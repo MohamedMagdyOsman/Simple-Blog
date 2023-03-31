@@ -34,7 +34,7 @@ class PostController extends Controller
 
         if ($request->has('image')) {
             $filename = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('uploads', $filename, 'public');
+            $request->file('image')->storeAs('', $filename, 'local');
         }
         
         $post = auth()->user()->posts()->create([
@@ -51,7 +51,7 @@ class PostController extends Controller
 
         return redirect()->route('admin.posts.index');
     }
-
+    
     public function edit(Post $post)
     {
         $categories = Category::all();
